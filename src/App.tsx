@@ -123,7 +123,7 @@ export default function App() {
     );
   } else if (auth.role === 'PARENT' && auth.studentId) {
     const student = students.find(s => s.id === auth.studentId);
-    if (student) view = <ParentView student={student} onLogout={handleLogout} />;
+    if (student) view = <ParentView student={student} onLogout={handleLogout} onUpdateStudent={handleUpdateStudent} />;
   } else if (auth.role === 'TEACHER' && auth.classId) {
     view = <TeacherView classId={auth.classId} students={students} onLogout={handleLogout} onUpdateStudent={handleUpdateStudent} />;
   } else if (auth.role === 'ADMIN') {

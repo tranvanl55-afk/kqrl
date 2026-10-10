@@ -26,6 +26,11 @@ export interface Student {
   bonuses: Bonus[];
   
   // Sơ yếu lý lịch (giả lập)
+  parentsName?: string;
+  parentsJob?: string;
+  phoneNumber?: string;
+  hobbies?: string;
+  talents?: string;
   skills: string[]; // Thế mạnh
   grade7Behavior: 'Tốt' | 'Khá' | 'Đạt' | 'Chưa cập nhật';
   grade7Academic: 'Tốt' | 'Khá' | 'Đạt' | 'Chưa cập nhật';

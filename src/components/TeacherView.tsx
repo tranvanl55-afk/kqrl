@@ -247,18 +247,20 @@ export default function TeacherView({
                     <thead className="bg-slate-50 border-b border-slate-200">
                       <tr>
                         <th className="px-6 py-3 font-semibold text-slate-900 w-12">
-                          <input 
-                            type="checkbox" 
-                            className="rounded border-slate-300 text-indigo-600 focus:ring-indigo-600 cursor-pointer"
-                            checked={selectedStudentIds.size === filtered.length && filtered.length > 0}
-                            onChange={(e) => {
-                              if (e.target.checked) {
-                                setSelectedStudentIds(new Set(filtered.map(s => s.id)));
-                              } else {
-                                setSelectedStudentIds(new Set());
-                              }
-                            }}
-                          />
+                          {onUpdateStudent && (
+                            <input 
+                              type="checkbox" 
+                              className="rounded border-slate-300 text-indigo-600 focus:ring-indigo-600 cursor-pointer"
+                              checked={selectedStudentIds.size === filtered.length && filtered.length > 0}
+                              onChange={(e) => {
+                                if (e.target.checked) {
+                                  setSelectedStudentIds(new Set(filtered.map(s => s.id)));
+                                } else {
+                                  setSelectedStudentIds(new Set());
+                                }
+                              }}
+                            />
+                          )}
                         </th>
                         <th className="px-6 py-3 font-semibold text-slate-900 w-16">STT</th>
                         <th className="px-6 py-3 font-semibold text-slate-900">Mã định danh</th>
@@ -388,9 +390,9 @@ export default function TeacherView({
                  <StudentProfile 
                    key={selectedStudent.id}
                    student={selectedStudent} 
-                   onDeleteRecord={handleDeleteRecord} 
-                   onAddRecord={handleAddRecord}
-                   onUpdateProfile={handleUpdateProfile}
+                   onDeleteRecord={onUpdateStudent ? handleDeleteRecord : undefined} 
+                   onAddRecord={onUpdateStudent ? handleAddRecord : undefined}
+                   onUpdateProfile={onUpdateStudent ? handleUpdateProfile : undefined}
                    onClose={() => setSelectedStudent(null)}
                    isAdmin={false}
                    initialTab="conduct"

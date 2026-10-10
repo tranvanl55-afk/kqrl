@@ -16,7 +16,7 @@ export default function StudentProfile({
   student: Student,
   onDeleteRecord?: (type: 'violation' | 'bonus', id: string) => void,
   onAddRecord?: (record: { type: 'VIOLATION' | 'BONUS', description: string, points: number, severity?: string }) => void,
-  onUpdateProfile?: (patch: Partial<Pick<Student, 'skills' | 'grade7Behavior' | 'grade7Academic'>>) => void,
+  onUpdateProfile?: (patch: Partial<Student>) => void,
   onClose?: () => void,
   isAdmin?: boolean,
   initialTab?: 'profile' | 'academic' | 'conduct'
@@ -102,6 +102,76 @@ export default function StudentProfile({
         <AnimatePresence mode="wait">
           {activeTab === 'profile' && (
             <motion.div key="profile" initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 10 }}>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <div>
+                  <h4 className="text-sm font-semibold mb-4 text-slate-900">Thông tin gia đình</h4>
+                  <div className="space-y-4">
+                    {onUpdateProfile ? (
+                      <>
+                        <label className="block text-sm">
+                          <span className="text-slate-500 block mb-1 font-medium">Họ tên cha/mẹ</span>
+                          <input type="text" value={student.parentsName || ''} onChange={e => onUpdateProfile({ parentsName: e.target.value })} className="w-full border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-indigo-600 outline-none border" placeholder="Nhập họ tên cha mẹ..." />
+                        </label>
+                        <label className="block text-sm">
+                          <span className="text-slate-500 block mb-1 font-medium">Nghề nghiệp</span>
+                          <input type="text" value={student.parentsJob || ''} onChange={e => onUpdateProfile({ parentsJob: e.target.value })} className="w-full border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-indigo-600 outline-none border" placeholder="Nhập nghề nghiệp..." />
+                        </label>
+                        <label className="block text-sm">
+                          <span className="text-slate-500 block mb-1 font-medium">Số điện thoại liên hệ</span>
+                          <input type="text" value={student.phoneNumber || ''} onChange={e => onUpdateProfile({ phoneNumber: e.target.value })} className="w-full border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-indigo-600 outline-none border" placeholder="Nhập số điện thoại..." />
+                        </label>
+                      </>
+                    ) : (
+                      <div className="space-y-4">
+                        <div>
+                          <p className="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">Họ tên cha/mẹ</p>
+                          <p className="text-sm font-medium text-slate-900">{student.parentsName || 'Chưa cập nhật'}</p>
+                        </div>
+                        <div>
+                          <p className="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">Nghề nghiệp</p>
+                          <p className="text-sm font-medium text-slate-900">{student.parentsJob || 'Chưa cập nhật'}</p>
+                        </div>
+                        <div>
+                          <p className="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">Số điện thoại liên hệ</p>
+                          <p className="text-sm font-medium text-slate-900">{student.phoneNumber || 'Chưa cập nhật'}</p>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                <div>
+                  <h4 className="text-sm font-semibold mb-4 text-slate-900">Thông tin cá nhân</h4>
+                  <div className="space-y-4">
+                    {onUpdateProfile ? (
+                      <>
+                        <label className="block text-sm">
+                          <span className="text-slate-500 block mb-1 font-medium">Sở thích</span>
+                          <input type="text" value={student.hobbies || ''} onChange={e => onUpdateProfile({ hobbies: e.target.value })} className="w-full border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-indigo-600 outline-none border" placeholder="Nhập sở thích..." />
+                        </label>
+                        <label className="block text-sm">
+                          <span className="text-slate-500 block mb-1 font-medium">Năng khiếu</span>
+                          <input type="text" value={student.talents || ''} onChange={e => onUpdateProfile({ talents: e.target.value })} className="w-full border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-indigo-600 outline-none border" placeholder="Nhập năng khiếu..." />
+                        </label>
+                      </>
+                    ) : (
+                      <div className="space-y-4">
+                        <div>
+                          <p className="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">Sở thích</p>
+                          <p className="text-sm font-medium text-slate-900">{student.hobbies || 'Chưa cập nhật'}</p>
+                        </div>
+                        <div>
+                          <p className="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">Năng khiếu</p>
+                          <p className="text-sm font-medium text-slate-900">{student.talents || 'Chưa cập nhật'}</p>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              <div className="h-px bg-slate-200 w-full mb-8"></div>
+
               <h4 className="text-sm font-semibold mb-4 flex items-center gap-2 text-slate-900">
                 <Star className="w-4 h-4 text-slate-400" /> Bản đồ Năng lực
               </h4>

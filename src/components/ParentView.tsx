@@ -4,7 +4,7 @@ import StudentProfile from './StudentProfile';
 import { Search, LogOut } from 'lucide-react';
 import { motion } from 'motion/react';
 
-export default function ParentView({ student, onLogout }: { student: Student, onLogout: () => void }) {
+export default function ParentView({ student, onLogout, onUpdateStudent }: { student: Student, onLogout: () => void, onUpdateStudent?: (updatedStudent: Student) => void }) {
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
       <header className="h-16 px-6 flex justify-between border-b border-slate-200 bg-white items-center sticky top-0 z-10 shadow-sm">
@@ -35,7 +35,10 @@ export default function ParentView({ student, onLogout }: { student: Student, on
           <p className="text-slate-500 mt-1">Dưới đây là thông tin rèn luyện và sơ yếu lý lịch mới nhất của học sinh.</p>
         </div>
         
-        <StudentProfile student={student} />
+        <StudentProfile 
+          student={student} 
+          onUpdateProfile={onUpdateStudent ? (patch) => onUpdateStudent({ ...student, ...patch }) : undefined}
+        />
       </main>
     </div>
   );
