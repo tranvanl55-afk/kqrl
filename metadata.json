@@ -1,0 +1,8 @@
+{
+  "name": "Theo dõi Rèn luyện THCS Ngô Chí Quốc",
+  "description": "Quản lý điểm rèn luyện học sinh, phân quyền Admin, GVCN, Phụ huynh.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
