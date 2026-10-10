@@ -19,7 +19,7 @@ export default function AdminView({
   onResetMonth: () => void
 }) {
   const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
-  const [activeTab, setActiveTab] = useState<'profile' | 'academic' | 'conduct'>('profile');
+  const [activeTab, setActiveTab] = useState<'profile' | 'academic' | 'conduct'>('conduct');
   const [searchQuery, setSearchQuery] = useState('');
   const [activeClass, setActiveClass] = useState<string>('ALL');
 
