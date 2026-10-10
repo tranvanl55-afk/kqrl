@@ -31,6 +31,14 @@ export default function StudentProfile({
   const [severity, setSeverity] = useState<'Lần đầu' | 'Tái phạm'>('Lần đầu');
   const [points, setPoints] = useState<number>(0);
 
+  const [profileForm, setProfileForm] = useState({
+    parentsName: student.parentsName || '',
+    parentsJob: student.parentsJob || '',
+    phoneNumber: student.phoneNumber || '',
+    hobbies: student.hobbies || '',
+    talents: student.talents || ''
+  });
+
   const handleAction = (e: React.FormEvent) => {
     e.preventDefault();
     if (onAddRecord && actionDesc.trim()) {
@@ -110,15 +118,15 @@ export default function StudentProfile({
                       <>
                         <label className="block text-sm">
                           <span className="text-slate-500 block mb-1 font-medium">Họ tên cha/mẹ</span>
-                          <input type="text" value={student.parentsName || ''} onChange={e => onUpdateProfile({ parentsName: e.target.value })} className="w-full border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-indigo-600 outline-none border" placeholder="Nhập họ tên cha mẹ..." />
+                          <input type="text" value={profileForm.parentsName} onChange={e => setProfileForm({...profileForm, parentsName: e.target.value})} className="w-full border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-indigo-600 outline-none border" placeholder="Nhập họ tên cha mẹ..." />
                         </label>
                         <label className="block text-sm">
                           <span className="text-slate-500 block mb-1 font-medium">Nghề nghiệp</span>
-                          <input type="text" value={student.parentsJob || ''} onChange={e => onUpdateProfile({ parentsJob: e.target.value })} className="w-full border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-indigo-600 outline-none border" placeholder="Nhập nghề nghiệp..." />
+                          <input type="text" value={profileForm.parentsJob} onChange={e => setProfileForm({...profileForm, parentsJob: e.target.value})} className="w-full border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-indigo-600 outline-none border" placeholder="Nhập nghề nghiệp..." />
                         </label>
                         <label className="block text-sm">
                           <span className="text-slate-500 block mb-1 font-medium">Số điện thoại liên hệ</span>
-                          <input type="text" value={student.phoneNumber || ''} onChange={e => onUpdateProfile({ phoneNumber: e.target.value })} className="w-full border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-indigo-600 outline-none border" placeholder="Nhập số điện thoại..." />
+                          <input type="text" value={profileForm.phoneNumber} onChange={e => setProfileForm({...profileForm, phoneNumber: e.target.value})} className="w-full border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-indigo-600 outline-none border" placeholder="Nhập số điện thoại..." />
                         </label>
                       </>
                     ) : (
@@ -147,11 +155,11 @@ export default function StudentProfile({
                       <>
                         <label className="block text-sm">
                           <span className="text-slate-500 block mb-1 font-medium">Sở thích</span>
-                          <input type="text" value={student.hobbies || ''} onChange={e => onUpdateProfile({ hobbies: e.target.value })} className="w-full border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-indigo-600 outline-none border" placeholder="Nhập sở thích..." />
+                          <input type="text" value={profileForm.hobbies} onChange={e => setProfileForm({...profileForm, hobbies: e.target.value})} className="w-full border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-indigo-600 outline-none border" placeholder="Nhập sở thích..." />
                         </label>
                         <label className="block text-sm">
                           <span className="text-slate-500 block mb-1 font-medium">Năng khiếu</span>
-                          <input type="text" value={student.talents || ''} onChange={e => onUpdateProfile({ talents: e.target.value })} className="w-full border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-indigo-600 outline-none border" placeholder="Nhập năng khiếu..." />
+                          <input type="text" value={profileForm.talents} onChange={e => setProfileForm({...profileForm, talents: e.target.value})} className="w-full border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-indigo-600 outline-none border" placeholder="Nhập năng khiếu..." />
                         </label>
                       </>
                     ) : (
@@ -169,6 +177,19 @@ export default function StudentProfile({
                   </div>
                 </div>
               </div>
+              
+              {onUpdateProfile && (
+                <div className="flex justify-end mb-8">
+                  <button 
+                    onClick={() => {
+                      onUpdateProfile(profileForm);
+                    }}
+                    className="px-6 py-2 bg-indigo-600 text-white rounded-lg text-sm font-semibold shadow-sm hover:bg-indigo-700 transition-colors"
+                  >
+                    Lưu Sơ yếu lý lịch
+                  </button>
+                </div>
+              )}
 
               <div className="h-px bg-slate-200 w-full mb-8"></div>
 
