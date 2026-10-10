@@ -6,7 +6,7 @@ import { initialStudents } from '../data';
 
 const CLASSES = Array.from(new Set(initialStudents.map(s => s.class)));
 // Mật khẩu demo (nên thay bằng xác thực phía máy chủ khi triển khai thật)
-const PASSWORDS = { ADMIN: 'gv123', TEACHER: 'xem123' };
+const PASSWORDS = { ADMIN: 'gv123', TEACHER: 'LinhHaNham' };
 
 export default function Login({ onLogin }: { onLogin: (auth: AuthState) => void }) {
   const [role, setRole] = useState<'ADMIN' | 'TEACHER' | 'PARENT' | null>(null);
